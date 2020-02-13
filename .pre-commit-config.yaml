@@ -1,0 +1,38 @@
+repos:
+-   repo: git://github.com/pre-commit/pre-commit-hooks
+    rev: a11d9314b22d8f8c7556443875b731ef05965464
+    hooks:
+    -   id: check-case-conflict
+    -   id: check-merge-conflict
+    -   id: check-symlinks
+    -   id: detect-private-key
+-   repo: git://github.com/luminopia/pre-commit-hooks
+    rev: v0.0.6
+    hooks:
+    -   id: enforce-action-comments
+-   repo: local
+    hooks:
+    -   id: dockerfile-lint
+        name: Dockerfile Lint
+        language: docker_image
+        # https://github.com/hadolint/hadolint
+        entry: hadolint/hadolint:v1.7.0 hadolint
+        files: ^.*Dockerfile.*$
+    -   id: shellcheck-lint
+        name: Shellcheck
+        language: docker_image
+        # https://github.com/koalaman/shellcheck
+        entry: koalaman/shellcheck:v0.5.0
+        types: [shell]
+    -   id: markdown-lint
+        name: Markdown Lint
+        language: node
+        # https://github.com/igorshubovych/markdownlint-cli
+        additional_dependencies: [markdownlint-cli]
+        entry: markdownlint
+        types: [markdown]
+        args: [--config, .markdownlintrc]
+# TODO: consider adding:
+# - https://github.com/pocc/pre-commit-hooks
+# - https://github.com/doublify/pre-commit-rust
+# - https://github.com/TekWizely/pre-commit-golang
