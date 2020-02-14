@@ -8,5 +8,6 @@ _Focused on configuration for a macOS development machine, but all toolchain com
   * wasm-interp (wabt | macos: brew)
 * Compilers
   * General Wasm/Wat (wabt | macos: brew)
-  * Rust (rustup -> cargo -> | macos: brew)
+  * Rust (rustup | macos: brew)
+    * `rustup target add wasm32-unknown-unknown`
   * Zig (zig | macos: brew)
