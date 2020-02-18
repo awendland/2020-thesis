@@ -1,0 +1,10 @@
+{
+  "name": "demo04-zig-lys-interop-on-rust-wasm",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "lys": "^0.1.11"
+  }
+}

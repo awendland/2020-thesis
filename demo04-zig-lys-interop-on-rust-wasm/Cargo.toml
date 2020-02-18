@@ -1,5 +1,5 @@
 [package]
-name = "demo-wasm"
+name = "demo_rust_embedded_wasmtime"
 version = "0.1.0"
 authors = ["Alex Wendland <me@alexwendland.com>"]
 edition = "2018"

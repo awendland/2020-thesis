@@ -1,0 +1,39 @@
+import src::keccak
+
+var k = Keccak()
+
+/**
+ * Resets the hashing internal state.
+ */
+#[export]
+fun reset(): void = {
+  Keccak.reset(k)
+}
+
+/**
+ * Ends the hashing process. Returns the address of the first output byte.
+ */
+#[export]
+fun digest(): u32 = {
+  Keccak.digest(k).ptr - 4 as u32
+}
+
+/**
+ * Updates the hashing state with new data.
+ */
+#[export]
+fun update(address: u32, length: u32): void = {
+  Keccak.update(k, address, length)
+}
+
+/**
+ * This function returns the top of the allocated memory.
+ *
+ * It is necessary because we will write the free memory before every "update"
+ * call. To write free memory, we first need a safe location to start, that is
+ * the result of this function.
+ */
+#[export]
+fun topMemory(): u32 = {
+  system::core::memory::getMaxMemory()
+}
