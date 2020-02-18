@@ -5,6 +5,9 @@
 # Generated output
 build/
 
+# Zig
+zig-cache
+
 # Created by https://www.gitignore.io/api/c,go,vim,c++,node,rust,macos,ocaml,windows,visualstudiocode
 # Edit at https://www.gitignore.io/?templates=c,go,vim,c++,node,rust,macos,ocaml,windows,visualstudiocode
 
