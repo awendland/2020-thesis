@@ -1,4 +1,4 @@
-# Polyglot FFI via Wasm
+# Sound, Polyglot FFI via Wasm
 
 Provide practical, sound interop between programming languages on top of WebAssembly.
 
@@ -78,23 +78,26 @@ pub struct Person {
 
 1. Define destructor naming convention.
     * Motivation: Rust has a `Drop` trait that will called (when available) when a reference exits scope. Having a standard convention for referring to destructors would allow this trait to be implemented automatically.
-        * Alternative: Expand macro to optionally take the name of a destructor function with the signature `(&self) -> nil`.
+        * Alternative (Rust): Expand macro to optionally take the name of a destructor function with the signature `(&self) -> nil`.
+    * Existing Work: GC proposal briefly mentions a possible extension [Weak References and Finalization](https://github.com/WebAssembly/gc/blob/master/proposals/gc/Overview.md#possible-extension-weak-references-and-finalisation).
 2. Define name-mangling conventions so that names are usable by all source languages.
         * Motivation: Rust can't reference extern functions that have `.` in the name.
 3. Define host environment conventions for when to reinstantiate a module vs. when to reuse an existing one.
     * This is a performance optimization, the safe approach is to reinstantiate with every use.
 4. Define host environment conventions for namespacing modules.
-    * Passing remark from core team at [tool-conventions#135](https://github.com/WebAssembly/tool-conventions/issues/135#issuecomment-585426556)
+    * Existing Work: Passing remark from core team at [tool-conventions#135](https://github.com/WebAssembly/tool-conventions/issues/135#issuecomment-585426556)
 
 ### Questions
 
 1. How should _Generics_/_Paramaterized Types_ be handled?
+    * Existing Work: GC proposal has an unfinished section about a possible extension [Type Parameters and Fields](https://github.com/WebAssembly/gc/blob/master/proposals/gc/Overview.md#possible-extension-type-parameters-and-fields).
 2. Where should ADT instances be stored?
     * Within Wasm Modules private memory?
         * Pro: Abstraction is easier to enforce.
         * Pro: Less work on the caller.
         * Con: Poor cache performance when working with instances from multiple libraries.
         * Con: If library uses GC and consumer doesn't, intermixes different memory management conventions.
+    * The [GC proposal](https://github.com/WebAssembly/gc/blob/master/proposals/gc/Overview.md) appears to want to integrate ADTs with the GC system.
 3. How to propagate errors between languages?
 
 ### Notes
@@ -110,6 +113,7 @@ _Focused on configuration for a macOS development machine, but all toolchain com
 
 * Runtimes
   * wasm-interp (wabt | macos: brew)
+  * node (node | macos: brew, fish: nvm)
 * Compilers
   * General Wasm/Wat (wabt | macos: brew)
   * CPP (emscripten | macos: brew)
