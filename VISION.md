@@ -2,9 +2,13 @@
 
 ## Usage
 
+NOTE: some syntax based on upcoming proposals: [GC](https://github.com/WebAssembly/gc/blob/master/proposals/gc/Overview.md) (reference types, type imports, typed function references).
+
 ### Simple ADT (no parameterized types)
 
-`Lib.wat` (exported by some source language OR written by hand)
+`Lib.wat` (exported by some higher-level source language OR written by hand)
+
+TODO: represent in a higher-level source language for better end-to-end understanding.
 
 ```lisp
 (module
@@ -30,6 +34,42 @@ impl Stack_i32 {
 }
 ```
 
+### Parameterized ADTs
+
+`Lib.wat`
+
+NOTE: This module will have to be reinstantiated for each unique `Stack__T` type.
+
+```lisp
+(module
+  (import "env" "Stack__T" (type $Stack__T")
+  (type $Stack) i32)
+  (func $Stack.constructor (result (ref $Stack)) ...)
+  (func $Stack.destruct (param (ref $Stack)) ...)
+  (func $Stack.push (param (ref $Stack)) (param (ref $Stack__T)) ...)
+  (func $Stack.pop (param (ref $Stack)) (result (ref $Stack__T)) ...)
+  (export ...)
+```
+
+---
+
+`Consumer.rs`
+
+```rust
+#[extern_adt]
+impl Stack<T> {
+  fn constructor() -> Stack<T>;
+  fn destruct(&self) -> Stack<T>;
+  fn push(&self, T); // NOTE: this could throw an error if insufficient memory is available
+  fn pop(&self) -> T;
+}
+
+pub struct Person {
+  age: u8,
+  name: String,
+}
+```
+
 ## TODO
 
 1. Define destructor naming convention.
@@ -37,6 +77,10 @@ impl Stack_i32 {
         * Alternative: Expand macro to optionally take the name of a destructor function with the signature `(&self) -> nil`.
 2. Define name-mangling conventions so that names are usable by all source languages.
         * Motivation: Rust can't reference extern functions that have `.` in the name.
+3. Define host environment conventions for when to reinstantiate a module vs. when to reuse an existing one.
+    * This is a performance optimization, the safe approach is to reinstantiate with every use.
+4. Define host environment conventions for namespacing modules.
+    * Passing remark from core team at [tool-conventions#135](https://github.com/WebAssembly/tool-conventions/issues/135#issuecomment-585426556)
 
 ## Questions
 
