@@ -8,6 +8,10 @@ build/
 # Zig
 zig-cache
 
+# Rust
+# gitignore.io only ignores this at top level
+target/
+
 # Created by https://www.gitignore.io/api/c,go,vim,c++,node,rust,macos,ocaml,windows,visualstudiocode
 # Edit at https://www.gitignore.io/?templates=c,go,vim,c++,node,rust,macos,ocaml,windows,visualstudiocode
 
