@@ -16,12 +16,12 @@ TODO: represent in a higher-level source language for better end-to-end understa
 
 ```lisp
 (module
-  (type $Stack_i32) i32)
+  (type $Stack_i32 i32)
   (func $Stack_i32.constructor (result (ref $Stack_i32)) ...)
   (func $Stack_i32.destruct (param (ref $Stack_i32)) ...)
   (func $Stack_i32.push (param (ref $Stack_i32)) (param i32) ...)
   (func $Stack_i32.pop (param (ref $Stack_i32)) (result i32) ...)
-  (export ...)
+  (export ...))
 ```
 
 ---
@@ -46,13 +46,13 @@ NOTE: This module will have to be reinstantiated for each unique `Stack__T` type
 
 ```lisp
 (module
-  (import "env" "Stack__T" (type $Stack__T")
-  (type $Stack) i32)
+  (import "env" "Stack__T" (type $Stack__T))
+  (type $Stack i32)
   (func $Stack.constructor (result (ref $Stack)) ...)
   (func $Stack.destruct (param (ref $Stack)) ...)
   (func $Stack.push (param (ref $Stack)) (param (ref $Stack__T)) ...)
   (func $Stack.pop (param (ref $Stack)) (result (ref $Stack__T)) ...)
-  (export ...)
+  (export ...))
 ```
 
 ---
