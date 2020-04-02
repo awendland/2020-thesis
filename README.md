@@ -116,11 +116,13 @@ _Focused on configuration for a macOS development machine, but all toolchain com
   * node (node | macos: brew, fish: nvm)
 * Compilers
   * General Wasm/Wat (wabt | macos: brew)
-  * CPP (emscripten | macos: brew)
-    * Also need binaryen (macos: yarn)
-    * Update `~/.emscripten` to link to:
-      * llvm from brew (LLVM_ROOT = `/usr/local/Cellar/llvm/9.0.1/bin`)
-      * binaryen from yarn/npm global (BINARYEN_ROOT = `/usr/local/bin`)
+  * CPP (emscripten | macos: emsdk)
+    * Deprecated approach: `brew install emscripten`
+      * Also need binaryen (macos: yarn)
+      * Update `~/.emscripten` to link to:
+        * llvm from brew (LLVM_ROOT = `/usr/local/Cellar/llvm/9.0.1/bin`)
+        * binaryen from yarn/npm global (BINARYEN_ROOT = `/usr/local/bin`)
+      * FIX: unable to find `wasm-emscripten-finalize` when installed this way
   * Rust (rustup | macos: brew)
     * `rustup target add wasm32-unknown-unknown`
   * Zig (zig | macos: brew)
