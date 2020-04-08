@@ -1,0 +1,6 @@
+[submodule "demo07-webp/libwebp"]
+	path = demo07-webp/libwebp
+	url = https://github.com/webmproject/libwebp
+[submodule "ex1-user-auth/hiredis"]
+	path = ex1-user-auth/hiredis
+	url = https://github.com/redis/hiredis
