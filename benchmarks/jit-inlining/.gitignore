@@ -1,0 +1,4 @@
+wasmtime-*/
+*.o
+*.o.txt
+*.wasm
