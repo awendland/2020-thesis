@@ -1,6 +1,11 @@
-# Comp Sci Thesis - Harvard 2020
+<div align="center">
+  <img src="readme-extras/header.png" alt="WebAssembly as a Multi-Language Platform" width="500">
+  <br>
+</div>
 
-This repository is for my ([Alex Wendland](https://blog.alexwendland.com/)) undergraduate thesis for Honors in Computer Science at Harvard. My advisor was Professor [Nada Amin](https://lampwww.epfl.ch/~amin/cv/), and my readers were [James Mickens](https://mickens.seas.harvard.edu/), [Stephen Chong](https://people.seas.harvard.edu/~chong/), and [Eddie Kohler](http://www.read.seas.harvard.edu/~kohler/).
+This repository is for my ([Alex Wendland](https://blog.alexwendland.com/)) undergraduate thesis for Honors in Computer Science at Harvard submitted on April 10th, 2020. My advisor was Professor [Nada Amin](https://lampwww.epfl.ch/~amin/cv/), and my readers were [James Mickens](https://mickens.seas.harvard.edu/), [Stephen Chong](https://people.seas.harvard.edu/~chong/), and [Eddie Kohler](http://www.read.seas.harvard.edu/~kohler/).
+
+If you're looking for an extension of WebAssembly with support for *abstract types*, see [awendland/webassembly-spec-abstypes](https://github.com/awendland/webassembly-spec-abstypes).
 
 ## Project History
 
@@ -18,7 +23,10 @@ This repo contains several exploratory and supporting pieces of work, with the b
     * `thesis-harvard-2020.pdf` - PDF of the thesis which I submitted on April 10th to the CS Department of SEAS.
     * `thesis-harvard-2020-overleaf.zip` - The latex source exported from Overleaf after final submission of my thesis to the department. This document was based on the wonderful [Dissertate](https://github.com/suchow/Dissertate) template by [Jordan Suchow](https://suchow.io/).
 * `exploration/` - mini-projects where I messed around with WebAssembly and different {Rust,Zig,C++}-to-WebAssembly compilers. See [exploration/README.md] for more information.
+* `samples/` - Runnable examples used in the thesis, primarily *Chapter 3: Maintaining the Integrity of Source Level Abstractions*.
+    * `sample-X.Y.wast` would refer to a sample in Chapter X Section Y.
+    * `sample-X.Y-abstypes.wast` indicates that the code requires a WebAssembly interpreter with support for the abstract types defined in this thesis. See [Reference implementation](#reference-implementation).
 
 ## Reference Implementation
 
-I added support for abstract types (similar to [OCaml's abstract types](https://ocaml.org/learn/tutorials/modules.html#Abstract-types)) to the [reference interpreter](https://github.com/WebAssembly/spec/tree/master/interpreter) for WebAssembly. My extended interpreter can be found at [awendland/webassembly-spec-abstypes](https://github.com/awendland/webassembly-spec-abstypes).
+I added support for abstract types (similar to [OCaml's abstract types](https://ocaml.org/learn/tutorials/modules.html#Abstract-types)) to the [reference interpreter](https://github.com/WebAssembly/spec/tree/master/interpreter) for WebAssembly. My extended interpreter can be found at [awendland/webassembly-spec-abstypes](https://github.com/awendland/webassembly-spec-abstypes). Discussion about this feature can be found in *Chapter 2: Extending WebAssembly with Abstract Types* in the thesis.
