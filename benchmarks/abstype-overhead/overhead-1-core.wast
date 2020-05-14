@@ -17,7 +17,7 @@
       (br_if $iter
         (i32.ne
           (local.tee $idx (i32.add (local.get $idx) (i32.const 1)))
-          (i32.const 10000000)))
+          (i32.const 1)))
     ))
 )
 (invoke $main "_start")

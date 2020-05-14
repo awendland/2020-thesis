@@ -29,7 +29,7 @@ async function main() {
           if (time_s.includes('s')) return Number.parseFloat(time_s.replace('s', '')) * 1000
           return `INVALID=${time_s}`
         })()
-        console.log(`${benchmark_type}\t${id}\t${time}\n`)
+        process.stdout.write(`${benchmark_type}\t${id}\t${time}\n`)
         match = data_extract.exec(stdout)
       }
     }
