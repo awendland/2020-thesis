@@ -60,3 +60,13 @@ repos:
         # - https://github.com/pocc/pre-commit-hooks
         # - https://github.com/doublify/pre-commit-rust
         # - https://github.com/TekWizely/pre-commit-golang
+
+        ############################
+        # Custom pre-commit checks #
+        ############################
+
+      - id: generate-samples-notebook
+        name: Compile WAT samples into a Jupyter notebook
+        language: system
+        entry: sh -c 'python samples/generate-notebook.py > samples/samples.ipynb'
+        pass_filenames: false
