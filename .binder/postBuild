@@ -1,0 +1,12 @@
+#!/bin/bash
+set -ex
+
+# Download a wasm reference interpreter binary
+export WASM_INTERPRETER="$HOME/wasm"
+wasm_binary_url=$(curl --silent --location "https://api.github.com/repos/awendland/webassembly-spec-abstypes/releases/latest" \
+    | python -c 'import json, sys; b = json.loads(sys.stdin.read()); print([a for a in b["assets"] if "Linux" in a["name"]][0]["browser_download_url"])')
+curl -L "$wasm_binary_url" -o "$WASM_INTERPRETER"
+chmod +x "$WASM_INTERPRETER"
+
+# Install the wasm_spec_kernel
+python -m wasm_spec_kernel.install --interpreter="$WASM_INTERPRETER"

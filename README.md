@@ -31,3 +31,11 @@ This repo contains several exploratory and supporting pieces of work, with the b
 ## Reference Implementation
 
 I added support for abstract types (similar to [OCaml's abstract types](https://ocaml.org/learn/tutorials/modules.html#Abstract-types)) to the [reference interpreter](https://github.com/WebAssembly/spec/tree/master/interpreter) for WebAssembly. My extended interpreter can be found at [awendland/webassembly-spec-abstypes](https://github.com/awendland/webassembly-spec-abstypes). Discussion about this feature can be found in _Chapter 2: Extending WebAssembly with Abstract Types_ in the thesis.
+
+To make trying out this implementation easier, I've implemented a generic Jupyter kernel for WebAssembly reference interpreters. It's available on PyPI as [wasm-spec-kernel](https://pypi.org/project/wasm-spec-kernel/) and on [GitHub](https://github.com/awendland/wasm_spec_kernel).
+
+## Samples
+
+I've configured this repository to be runnable via [Binder](https://mybinder.org), so that you can jump right into a web-based Jupyter notebook with the `webassembly-spec-abstypes` interpreter already available and the code in `samples/` all runnable. Try it out with:
+
+[![launch Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/awendland/2020-thesis/HEAD?filepath=samples/samples.ipynb)
