@@ -1,30 +1,52 @@
 repos:
--   repo: git://github.com/pre-commit/pre-commit-hooks
+  - repo: git://github.com/pre-commit/pre-commit-hooks
     rev: a11d9314b22d8f8c7556443875b731ef05965464
     hooks:
-    -   id: check-case-conflict
-    -   id: check-merge-conflict
-    -   id: check-symlinks
-    -   id: detect-private-key
--   repo: git://github.com/luminopia/pre-commit-hooks
-    rev: v0.0.6
+      - id: check-case-conflict
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: detect-private-key
+
+  - repo: git://github.com/luminopia/pre-commit-hooks
+    rev: v0.0.11
     hooks:
-    -   id: enforce-action-comments
--   repo: local
+      - id: enforce-action-comments
+
+  - repo: git://github.com/pre-commit/mirrors-prettier
+    rev: v2.1.2
     hooks:
-    -   id: dockerfile-lint
+      - id: prettier
+        exclude: exploration/ # pre-commit was added after this occurred
+
+  - repo: https://github.com/pycqa/isort
+    rev: 5.6.4
+    hooks:
+      - id: isort
+        args: ["--profile", "black", "--filter-files"]
+
+  - repo: https://github.com/psf/black
+    rev: 20.8b1
+    hooks:
+      - id: black
+
+  - repo: local
+    hooks:
+      - id: dockerfile-lint
         name: Dockerfile Lint
         language: docker_image
         # https://github.com/hadolint/hadolint
         entry: hadolint/hadolint:v1.7.0 hadolint
         files: ^.*Dockerfile.*$
-    -   id: shellcheck-lint
+
+      - id: shellcheck-lint
         name: Shellcheck
         language: docker_image
         # https://github.com/koalaman/shellcheck
         entry: koalaman/shellcheck:v0.5.0
         types: [shell]
-    -   id: markdown-lint
+        exclude: exploration/ # pre-commit was added after this occurred
+
+      - id: markdown-lint
         name: Markdown Lint
         language: node
         # https://github.com/igorshubovych/markdownlint-cli
@@ -32,7 +54,9 @@ repos:
         entry: markdownlint
         types: [markdown]
         args: [--config, .markdownlintrc]
-# TODO: consider adding:
-# - https://github.com/pocc/pre-commit-hooks
-# - https://github.com/doublify/pre-commit-rust
-# - https://github.com/TekWizely/pre-commit-golang
+        exclude: exploration/ # pre-commit was added after this occurred
+
+        # TODO: consider adding:
+        # - https://github.com/pocc/pre-commit-hooks
+        # - https://github.com/doublify/pre-commit-rust
+        # - https://github.com/TekWizely/pre-commit-golang
